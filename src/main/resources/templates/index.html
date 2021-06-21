@@ -8,7 +8,7 @@
     <link rel="stylesheet" th:href="@{css/style.css}" />
   </head>
   <body>
-    <header class="header--main-page">
+    <header class="header--main-page" th:fragment="header">
       <nav class="container container--70">
         <ul class="nav--actions">
           <li><a th:text="#{page.nav.login}" href="" class="btn btn--small btn--without-border">Zaloguj</a></li>
@@ -131,7 +131,7 @@
 
     </section>
 
-    <footer>
+    <footer th:fragment="footer">
       <div id="contact" class="contact">
         <h2 th:text="#{page.footer.contact-us}">Skontaktuj się z nami</h2>
         <h3 th:text="#{page.footer.contact-form}">Formularz kontaktowy</h3>
