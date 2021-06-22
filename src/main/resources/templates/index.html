@@ -5,23 +5,23 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta http-equiv="X-UA-Compatible" content="ie=edge" />
     <title>Document</title>
-    <link rel="stylesheet" th:href="@{css/style.css}" />
+    <link rel="stylesheet" th:href="@{/css/style.css}" />
   </head>
   <body>
-    <header class="header--main-page" th:fragment="header">
+    <header class="header--main-page">
       <nav class="container container--70">
         <ul class="nav--actions">
           <li><a th:text="#{page.nav.login}" href="" class="btn btn--small btn--without-border">Zaloguj</a></li>
           <li><a th:text="#{page.nav.sign-in}" href="#" class="btn btn--small btn--highlighted">Załóż konto</a></li>
         </ul>
 
-        <ul>
-          <li><a th:text="#{page.nav.start}" href="" class="btn btn--without-border active">Start</a></li>
-          <li><a th:text="#{page.nav.what-about}" href="#steps" class="btn btn--without-border">O co chodzi?</a></li>
-          <li><a th:text="#{page.nav.about-us}" href="#about-us" class="btn btn--without-border">O nas</a></li>
-          <li><a th:text="#{page.nav.foundations}" href="#help" class="btn btn--without-border">Fundacje i organizacje</a></li>
-          <li><a th:text="#{page.nav.donate}" href="form.html" class="btn btn--without-border">Przekaż dary</a></li>
-          <li><a th:text="#{page.nav.contact}" href="#contact" class="btn btn--without-border">Kontakt</a></li>
+        <ul th:fragment="nav-links">
+          <li><a th:text="#{page.nav.start}" th:href="@{/}" class="btn btn--without-border active">Start</a></li>
+          <li><a th:text="#{page.nav.what-about}" th:href="@{/#steps}" class="btn btn--without-border">O co chodzi?</a></li>
+          <li><a th:text="#{page.nav.about-us}" th:href="@{/#about-us}" class="btn btn--without-border">O nas</a></li>
+          <li><a th:text="#{page.nav.foundations}" th:href="@{/#help}" class="btn btn--without-border">Fundacje i organizacje</a></li>
+          <li><a th:text="#{page.nav.donate}" th:href="@{/donations/form}" class="btn btn--without-border">Przekaż dary</a></li>
+          <li><a th:text="#{page.nav.contact}" th:href="@{/#contact}" class="btn btn--without-border">Kontakt</a></li>
         </ul>
       </nav>
 
@@ -141,6 +141,6 @@
       </div>
     </footer>
 
-    <script th:src="@{js/app.js}"></script>
+    <script th:src="@{/js/app.js}"></script>
   </body>
 </html>
