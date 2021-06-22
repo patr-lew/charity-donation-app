@@ -19,7 +19,7 @@ public class Donation {
 
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "don_seq")
-    @SequenceGenerator(name = "don_seq", sequenceName = "don_seq", initialValue = 100)
+    @SequenceGenerator(name = "don_seq", sequenceName = "don_seq", initialValue = 100, allocationSize = 1)
     private Long id;
     private Integer quantity;
 
