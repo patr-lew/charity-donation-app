@@ -80,7 +80,7 @@
     </div>
 
     <div class="form--steps-container">
-        <div class="form--steps-counter"><span th:text="#{page.form.in-form.step}">Krok</span>/ 4</div>
+        <div class="form--steps-counter"><span th:text="#{page.form.in-form.step}">Krok</span> / 4</div>
 
         <form action="form-confirmation.html" th:action="@{/donations/donate}" th:object="${donation}" method="post">
             <!-- STEP 1: class .active is switching steps -->
@@ -116,7 +116,7 @@
                 <div class="form-group form-group--inline">
                     <label>
                         <span th:text="#{page.form.in-form.bags-quantity}">Liczba 60l worków:</span>
-                        <input type="number" th:field="*{quantity}"/>
+                        <input id="bagQuantity" type="number" th:field="*{quantity}"/>
                     </label>
                     <div class="form-alert" th:if="${#fields.hasErrors('quantity')}" th:errors="*{quantity}"></div>
                 </div>
@@ -163,7 +163,7 @@
                         <div class="form-group form-group--inline">
                             <label>
                                 <span th:text="#{page.form.in-form.address.street-name}">Ulica</span>
-                                <input type="text" th:field="*{street}"/>
+                                <input id="street" type="text" th:field="*{street}"/>
                             </label>
                             <div class="form-alert" th:if="${#fields.hasErrors('street')}" th:errors="*{street}"></div>
                         </div>
@@ -171,7 +171,7 @@
                         <div class="form-group form-group--inline">
                             <label>
                                 <span th:text="#{page.form.in-form.address.city}">Miasto</span>
-                                <input type="text" th:field="*{city}"/>
+                                <input id="city" type="text" th:field="*{city}"/>
                             </label>
                             <div class="form-alert" th:if="${#fields.hasErrors('city')}" th:errors="*{city}"></div>
                         </div>
@@ -179,7 +179,7 @@
                         <div class="form-group form-group--inline">
                             <label>
                                 <span th:text="#{page.form.in-form.address.code}">Kod pocztowy</span>
-                                <input type="text" th:field="*{zipCode}"/>
+                                <input id="zipCode" type="text" th:field="*{zipCode}"/>
                             </label>
                             <div class="form-alert" th:if="${#fields.hasErrors('zipCode')}" th:errors="*{zipCode}"></div>
                         </div>
@@ -187,7 +187,7 @@
                         <div class="form-group form-group--inline">
                             <label>
                                 <span th:text="#{page.form.in-form.phone-number}">Numer telefonu</span>
-                                <input type="phone" th:field="*{phoneNumber}"/>
+                                <input id="phoneNumber" type="phone" th:field="*{phoneNumber}"/>
                             </label>
                             <div class="form-alert" th:if="${#fields.hasErrors('phoneNumber')}" th:errors="*{phoneNumber}"></div>
                         </div>
@@ -198,7 +198,7 @@
                         <div class="form-group form-group--inline">
                             <label>
                                 <span th:text="#{page.form.in-form.pick-up-date.date}">Data</span>
-                                <input type="date" th:field="*{pickUpDate}"/>
+                                <input id="date" type="date" th:field="*{pickUpDate}"/>
                             </label>
                             <div class="form-alert" th:if="${#fields.hasErrors('pickUpDate')}" th:errors="*{pickUpDate}"></div>
                         </div>
@@ -206,21 +206,21 @@
                         <div class="form-group form-group--inline">
                             <label>
                                 <span th:text="#{page.form.in-form.pick-up-date.time}">Godzina</span>
-                                <input type="time" th:field="*{pickUpTime}"/> </label>
+                                <input id="time" type="time" th:field="*{pickUpTime}"/> </label>
                             <div class="form-alert" th:if="${#fields.hasErrors('pickUpTime')}" th:errors="*{pickUpTime}"></div>
                         </div>
 
                         <div class="form-group form-group--inline">
                             <label>
                                 <span th:text="#{page.form.in-form.comment}">Uwagi dla kuriera</span>
-                                <textarea th:field="*{pickUpComment}" rows="5"></textarea>
+                                <textarea id="comment" th:field="*{pickUpComment}" rows="5"></textarea>
                             </label>
                         </div>
                     </div>
                 </div>
                 <div class="form-group form-group--buttons">
                     <button type="button" class="btn prev-step" th:text="#{page.form.in-form.previous}">Wstecz</button>
-                    <button type="button" class="btn next-step" th:text="#{page.form.in-form.next}">Dalej</button>
+                    <button type="button" class="btn next-step" th:text="#{page.form.in-form.next}" id="show-summary">Dalej</button>
                 </div>
             </div>
 
@@ -234,16 +234,16 @@
                         <ul>
                             <li>
                                 <span class="icon icon-bag"></span>
-                                <span class="summary--text"
-                                >4 worki ubrań w dobrym stanie dla dzieci</span
-                                >
+                                <span class="summary--text" id="summary-quantity">
+                                    ilość worków rzeczy
+                                </span>
                             </li>
 
                             <li>
                                 <span class="icon icon-hand"></span>
-                                <span class="summary--text"
-                                >Dla fundacji "Mam marzenie" w Warszawie</span
-                                >
+                                <span class="summary--text" id="summary-institution">
+                                    Dla fundacji "Mam marzenie" w Warszawie
+                                </span>
                             </li>
                         </ul>
                     </div>
@@ -252,19 +252,19 @@
                         <div class="form-section--column">
                             <h4>Adres odbioru:</h4>
                             <ul>
-                                <li>Prosta 51</li>
-                                <li>Warszawa</li>
-                                <li>99-098</li>
-                                <li>123 456 789</li>
+                                <li id="summary-street">Prosta 51</li>
+                                <li id="summary-city">Warszawa</li>
+                                <li id="summary-zipCode">99-098</li>
+                                <li id="summary-phoneNumber">123 456 789</li>
                             </ul>
                         </div>
 
                         <div class="form-section--column">
                             <h4>Termin odbioru:</h4>
                             <ul>
-                                <li>13/12/2018</li>
-                                <li>15:40</li>
-                                <li>Brak uwag</li>
+                                <li id="summary-date">13/12/2018</li>
+                                <li id="summary-time">15:40</li>
+                                <li id="summary-comment">Brak uwag</li>
                             </ul>
                         </div>
                     </div>
