@@ -40,9 +40,15 @@ public class DonationController {
     }
 
     @PostMapping("/donate")
-    public String getDonation(@Valid Donation donation, BindingResult result) {
+    public String getDonation(@Valid Donation donation, BindingResult result, Model model) {
 
         if (result.hasErrors()) {
+            List<Category> categories = categoryService.findAll();
+            List<Institution> institutions = institutionService.findAll();
+
+            model.addAttribute("donation", donation);
+            model.addAttribute("categories", categories);
+            model.addAttribute("institutions", institutions);
             return "form";
         }
 
