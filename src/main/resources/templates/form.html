@@ -79,7 +79,7 @@
     </div>
 
     <div class="form--steps-container">
-        <div class="form--steps-counter"><span th:text="#{page.form.in-form.step}">Krok</span> <span>1</span>/4</div>
+        <div class="form--steps-counter"><span th:text="#{page.form.in-form.step}">Krok</span>/ 4</div>
 
         <form action="form-confirmation.html" th:action="@{/donations/donate}" th:object="${donation}" method="post">
             <!-- STEP 1: class .active is switching steps -->
@@ -124,13 +124,13 @@
             </div>
 
 
-            <!-- STEP 4 -->
+            <!-- STEP 3 -->
             <div data-step="3">
                 <h3 th:text="#{page.form.in-form.specify-institution}">Wybierz organizacje, której chcesz pomóc:</h3>
 
                 <div class="form-group form-group--checkbox" th:each="institution : ${institutions}">
                     <label>
-                        <input type="radio" name="organization" value="old" th:value="${institution.id}"/>
+                        <input type="radio" name="institution" value="old" th:value="${institution.id}"/>
                         <span class="checkbox radio"></span>
                         <span class="description">
                             <div class="title" th:text="${institution.name}">Fundacja “Bez domu”</div>
@@ -146,65 +146,79 @@
                     <button type="button" class="btn next-step" th:text="#{page.form.in-form.next}">Dalej</button>
                 </div>
             </div>
-            <!-- STEP 5 -->
+
+            <!-- STEP 4 -->
             <div data-step="4">
-                <h3>Podaj adres oraz termin odbioru rzecz przez kuriera:</h3>
+                <h3 th:text="#{page.form.in-form.specify-address}">Podaj adres oraz termin odbioru rzecz przez kuriera:</h3>
 
                 <div class="form-section form-section--columns">
                     <div class="form-section--column">
-                        <h4>Adres odbioru</h4>
-                        <div class="form-group form-group--inline">
-                            <label> Ulica <input type="text" name="address"/> </label>
-                        </div>
-
-                        <div class="form-group form-group--inline">
-                            <label> Miasto <input type="text" name="city"/> </label>
-                        </div>
-
+                        <h4 th:text="#{page.form.in-form.address}">Adres odbioru</h4>
                         <div class="form-group form-group--inline">
                             <label>
-                                Kod pocztowy <input type="text" name="postcode"/>
+                                <span th:text="#{page.form.in-form.address.street}">Ulica</span>
+                                <input type="text" th:field="*{street}"/>
                             </label>
                         </div>
 
                         <div class="form-group form-group--inline">
                             <label>
-                                Numer telefonu <input type="phone" name="phone"/>
+                                <span th:text="#{page.form.in-form.address.city}">Miasto</span>
+                                <input type="text" th:field="*{city}"/>
+                            </label>
+                        </div>
+
+                        <div class="form-group form-group--inline">
+                            <label>
+                                <span th:text="#{page.form.in-form.address.code}">Kod pocztowy</span>
+                                <input type="text" th:field="*{zipCode}"/>
+                            </label>
+                        </div>
+
+                        <div class="form-group form-group--inline">
+                            <label>
+                                <span th:text="#{page.form.in-form.phone-number}">Numer telefonu</span>
+                                <input type="phone" th:field="*{phoneNumber}"/>
                             </label>
                         </div>
                     </div>
 
                     <div class="form-section--column">
-                        <h4>Termin odbioru</h4>
+                        <h4 th:text="#{page.form.in-form.pick-up-date}">Termin odbioru</h4>
                         <div class="form-group form-group--inline">
-                            <label> Data <input type="date" name="data"/> </label>
-                        </div>
-
-                        <div class="form-group form-group--inline">
-                            <label> Godzina <input type="time" name="time"/> </label>
+                            <label>
+                                <span th:text="#{page.form.in-form.pick-up-date.date}">Data</span>
+                                <input type="date" th:field="*{pickUpDate}"/>
+                            </label>
                         </div>
 
                         <div class="form-group form-group--inline">
                             <label>
-                                Uwagi dla kuriera
-                                <textarea name="more_info" rows="5"></textarea>
+                                <span th:text="#{page.form.in-form.pick-up-date.time}">Godzina</span>
+                                <input type="time" th:field="*{pickUpTime}"/> </label>
+                        </div>
+
+                        <div class="form-group form-group--inline">
+                            <label>
+                                <span th:text="#{page.form.in-form.comment}">Uwagi dla kuriera</span>
+                                <textarea th:field="*{pickUpComment}" rows="5"></textarea>
                             </label>
                         </div>
                     </div>
                 </div>
                 <div class="form-group form-group--buttons">
-                    <button type="button" class="btn prev-step">Wstecz</button>
-                    <button type="button" class="btn next-step">Dalej</button>
+                    <button type="button" class="btn prev-step" th:text="#{page.form.in-form.previous}">Wstecz</button>
+                    <button type="button" class="btn next-step" th:text="#{page.form.in-form.next}">Dalej</button>
                 </div>
             </div>
 
-            <!-- STEP 6 -->
+            <!-- STEP 5 -->
             <div data-step="5">
-                <h3>Podsumowanie Twojej darowizny</h3>
+                <h3 th:text="#{page.form.in-form.summary}">Podsumowanie Twojej darowizny</h3>
 
                 <div class="summary">
                     <div class="form-section">
-                        <h4>Oddajesz:</h4>
+                        <h4 th:text="#{page.form.in-form.summary.you-donate}">Oddajesz:</h4>
                         <ul>
                             <li>
                                 <span class="icon icon-bag"></span>
@@ -245,8 +259,8 @@
                 </div>
 
                 <div class="form-group form-group--buttons">
-                    <button type="button" class="btn prev-step">Wstecz</button>
-                    <button type="submit" class="btn">Potwierdzam</button>
+                    <button type="button" class="btn prev-step" th:text="#{page.form.in-form.previous}">Wstecz</button>
+                    <button type="submit" class="btn" th:text="#{page.form.in-form.submit}">Potwierdzam</button>
                 </div>
             </div>
         </form>
