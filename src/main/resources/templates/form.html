@@ -155,7 +155,8 @@
 
             <!-- STEP 4 -->
             <div data-step="4">
-                <h3 th:text="#{page.form.in-form.specify-address}">Podaj adres oraz termin odbioru rzecz przez kuriera:</h3>
+                <h3 th:text="#{page.form.in-form.specify-address}">Podaj adres oraz termin odbioru rzecz przez
+                    kuriera:</h3>
 
                 <div class="form-section form-section--columns">
                     <div class="form-section--column">
@@ -181,7 +182,8 @@
                                 <span th:text="#{page.form.in-form.address.code}">Kod pocztowy</span>
                                 <input id="zipCode" type="text" th:field="*{zipCode}"/>
                             </label>
-                            <div class="form-alert" th:if="${#fields.hasErrors('zipCode')}" th:errors="*{zipCode}"></div>
+                            <div class="form-alert" th:if="${#fields.hasErrors('zipCode')}"
+                                 th:errors="*{zipCode}"></div>
                         </div>
 
                         <div class="form-group form-group--inline">
@@ -189,7 +191,8 @@
                                 <span th:text="#{page.form.in-form.phone-number}">Numer telefonu</span>
                                 <input id="phoneNumber" type="phone" th:field="*{phoneNumber}"/>
                             </label>
-                            <div class="form-alert" th:if="${#fields.hasErrors('phoneNumber')}" th:errors="*{phoneNumber}"></div>
+                            <div class="form-alert" th:if="${#fields.hasErrors('phoneNumber')}"
+                                 th:errors="*{phoneNumber}"></div>
                         </div>
                     </div>
 
@@ -200,14 +203,16 @@
                                 <span th:text="#{page.form.in-form.pick-up-date.date}">Data</span>
                                 <input id="date" type="date" th:field="*{pickUpDate}"/>
                             </label>
-                            <div class="form-alert" th:if="${#fields.hasErrors('pickUpDate')}" th:errors="*{pickUpDate}"></div>
+                            <div class="form-alert" th:if="${#fields.hasErrors('pickUpDate')}"
+                                 th:errors="*{pickUpDate}"></div>
                         </div>
 
                         <div class="form-group form-group--inline">
                             <label>
                                 <span th:text="#{page.form.in-form.pick-up-date.time}">Godzina</span>
                                 <input id="time" type="time" th:field="*{pickUpTime}"/> </label>
-                            <div class="form-alert" th:if="${#fields.hasErrors('pickUpTime')}" th:errors="*{pickUpTime}"></div>
+                            <div class="form-alert" th:if="${#fields.hasErrors('pickUpTime')}"
+                                 th:errors="*{pickUpTime}"></div>
                         </div>
 
                         <div class="form-group form-group--inline">
@@ -220,7 +225,9 @@
                 </div>
                 <div class="form-group form-group--buttons">
                     <button type="button" class="btn prev-step" th:text="#{page.form.in-form.previous}">Wstecz</button>
-                    <button type="button" class="btn next-step" th:text="#{page.form.in-form.next}" id="show-summary">Dalej</button>
+                    <button type="button" class="btn next-step" th:text="#{page.form.in-form.next}" id="show-summary">
+                        Dalej
+                    </button>
                 </div>
             </div>
 
@@ -235,14 +242,14 @@
                             <li>
                                 <span class="icon icon-bag"></span>
                                 <span class="summary--text" id="summary-quantity">
-                                    ilość worków rzeczy
+                                    - 0 -
                                 </span>
                             </li>
 
                             <li>
                                 <span class="icon icon-hand"></span>
                                 <span class="summary--text" id="summary-institution">
-                                    Dla fundacji "Mam marzenie" w Warszawie
+                                    - 0 -
                                 </span>
                             </li>
                         </ul>
@@ -252,19 +259,19 @@
                         <div class="form-section--column">
                             <h4>Adres odbioru:</h4>
                             <ul>
-                                <li id="summary-street">Prosta 51</li>
-                                <li id="summary-city">Warszawa</li>
-                                <li id="summary-zipCode">99-098</li>
-                                <li id="summary-phoneNumber">123 456 789</li>
+                                <li id="summary-street">- 0 -</li>
+                                <li id="summary-city">- 0 -</li>
+                                <li id="summary-zipCode">- 0 -</li>
+                                <li id="summary-phoneNumber">- 0 -</li>
                             </ul>
                         </div>
 
                         <div class="form-section--column">
                             <h4>Termin odbioru:</h4>
                             <ul>
-                                <li id="summary-date">13/12/2018</li>
-                                <li id="summary-time">15:40</li>
-                                <li id="summary-comment">Brak uwag</li>
+                                <li id="summary-date">- 0 -</li>
+                                <li id="summary-time">- 0 -</li>
+                                <li id="summary-comment">- 0 -</li>
                             </ul>
                         </div>
                     </div>

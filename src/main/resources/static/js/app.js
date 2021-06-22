@@ -203,14 +203,13 @@ document.querySelector("#summary-institution").innerText = institution;
 const categories = document.querySelectorAll("input[name='categories']:checked");
 
 let categoriesString = "";
-for(let cat in categories) {
-    let catString = cat.parentElement.lastElementChild.textContent;
-    categoriesString = categoriesString + catString + "<br />";
+let catStrings = [...categories].map(cat => cat.parentElement.lastElementChild.innerText);
+
+for(let cat of catStrings) {
+    categoriesString = categoriesString + cat + "<br />";
 }
 
 document.querySelector("#summary-quantity").innerHTML = quantity + " worków, w których znajdują się: <br />" + categoriesString;
-
-
 
 }
 
