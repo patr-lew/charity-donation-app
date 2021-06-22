@@ -14,7 +14,8 @@ import javax.persistence.*;
 public class Institution {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "inst_seq")
+    @SequenceGenerator(name = "inst_seq", sequenceName = "inst_seq", initialValue = 100)
     private Long id;
     private String name;
     private String description;
