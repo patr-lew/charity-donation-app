@@ -1,8 +1,10 @@
 package pl.coderslab.charity.entity;
 
 import lombok.*;
+import org.hibernate.validator.constraints.UniqueElements;
 
 import javax.persistence.*;
+import javax.validation.Constraint;
 import java.util.Collection;
 
 @Builder
@@ -26,6 +28,7 @@ public class User {
     private String lastName;
     private String email;
     private String password;
+    private boolean enabled;
 
     @ManyToMany(fetch = FetchType.EAGER)
     @JoinTable(name = "users_roles",
