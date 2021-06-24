@@ -15,7 +15,7 @@
             <li class="logged-user">
                 <div>
                     <span th:text="#{page.form.hello}" th:remove="tag"> Witaj</span>
-                    <span th:text="${authentication.principal.user.firstname}" th:remove="tag">username</span>
+                    <span th:text="${#authentication.principal.user.firstName}" th:remove="tag">username</span>
                 </div>
                 <ul class="dropdown">
                     <li><a th:text="#{page.user.profile}" href="#">Profil</a></li>
