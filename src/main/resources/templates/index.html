@@ -4,24 +4,24 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta http-equiv="X-UA-Compatible" content="ie=edge" />
-    <title>Document</title>
-    <link rel="stylesheet" th:href="@{css/style.css}" />
+    <title th:text="#{page.index.title}">Document</title>
+    <link rel="stylesheet" th:href="@{/css/style.css}" />
   </head>
   <body>
-    <header class="header--main-page" th:fragment="header">
+    <header class="header--main-page">
       <nav class="container container--70">
-        <ul class="nav--actions">
-          <li><a th:text="#{page.nav.login}" href="" class="btn btn--small btn--without-border">Zaloguj</a></li>
-          <li><a th:text="#{page.nav.sign-in}" href="#" class="btn btn--small btn--highlighted">Załóż konto</a></li>
+        <ul class="nav--actions" th:fragment="nav-user">
+          <li><a th:text="#{page.nav.login}" th:href="@{/login}" class="btn btn--small btn--without-border">Zaloguj</a></li>
+          <li><a th:text="#{page.nav.sign-in}" th:href="@{/register}" class="btn btn--small btn--highlighted">Załóż konto</a></li>
         </ul>
 
-        <ul>
-          <li><a th:text="#{page.nav.start}" href="" class="btn btn--without-border active">Start</a></li>
-          <li><a th:text="#{page.nav.what-about}" href="#steps" class="btn btn--without-border">O co chodzi?</a></li>
-          <li><a th:text="#{page.nav.about-us}" href="#about-us" class="btn btn--without-border">O nas</a></li>
-          <li><a th:text="#{page.nav.foundations}" href="#help" class="btn btn--without-border">Fundacje i organizacje</a></li>
-          <li><a th:text="#{page.nav.donate}" href="form.html" class="btn btn--without-border">Przekaż dary</a></li>
-          <li><a th:text="#{page.nav.contact}" href="#contact" class="btn btn--without-border">Kontakt</a></li>
+        <ul th:fragment="nav-links">
+          <li><a th:text="#{page.nav.start}" th:href="@{/}" class="btn btn--without-border active">Start</a></li>
+          <li><a th:text="#{page.nav.what-about}" th:href="@{/#steps}" class="btn btn--without-border">O co chodzi?</a></li>
+          <li><a th:text="#{page.nav.about-us}" th:href="@{/#about-us}" class="btn btn--without-border">O nas</a></li>
+          <li><a th:text="#{page.nav.foundations}" th:href="@{/#help}" class="btn btn--without-border">Fundacje i organizacje</a></li>
+          <li><a th:text="#{page.nav.donate}" th:href="@{/donations/form}" class="btn btn--without-border">Przekaż dary</a></li>
+          <li><a th:text="#{page.nav.contact}" th:href="@{/#contact}" class="btn btn--without-border">Kontakt</a></li>
         </ul>
       </nav>
 
@@ -39,13 +39,13 @@
     <section id="stats" class="stats">
       <div class="container container--85">
         <div class="stats--item">
-          <em>10</em>
+          <em th:text="${donationsQuantities}">10</em>
           <h3 th:text="#{page.index.bags-away}">Oddanych worków</h3>
           <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Eius est beatae, quod accusamus illum tempora!</p>
         </div>
 
         <div class="stats--item">
-          <em>5</em>
+          <em th:text="${donationsCount}">5</em>
           <h3 th:text="#{page.index.gifts-away}">Przekazanych darów</h3>
           <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Laboriosam magnam, sint nihil cupiditate quas quam.</p>
         </div>
@@ -99,29 +99,18 @@
         <p th:text="#{page.index.who-we-help.slide-1}">W naszej bazie znajdziesz listę zweryfikowanych Fundacji, z którymi współpracujemy.
           Możesz sprawdzić czym się zajmują.</p>
 
-        <ul class="help--slides-items">
-          <li>
-            <div class="col">
-              <div th:text="#{page.index.who-we-help.foundation-1}" class="title">Fundacja "Dbam o Zdrowie"</div>
-              <div th:text="#{page.index.who-we-help.foundation-1.description}" class="subtitle">Cel i misja: Pomoc dzieciom z ubogich rodzin.</div>
-            </div>
-
-            <div class="col">
-              <div th:text="#{page.index.who-we-help.foundation-2}" class="title">Fundacja "A kogo"</div>
-              <div th:text="#{page.index.who-we-help.foundation-2.description}" class="subtitle">Cel i misja: Pomoc wybudzaniu dzieci ze śpiączki.</div>
-            </div>
-          </li>
+        <ul class="help--slides-items" th:each="i : ${#numbers.sequence(0, institutions.size(), 2)}">
 
           <li>
-            <div class="col">
-              <div th:text="#{page.index.who-we-help.foundation-3}" class="title">Fundacja “Dla dzieci"</div>
-              <div th:text="#{page.index.who-we-help.foundation-3.description}" class="subtitle">Cel i misja: Pomoc osobom znajdującym się w trudnej sytuacji życiowej.</div>
-            </div>
-            <div class="col">
-              <div th:text="#{page.index.who-we-help.foundation-4}" class="title">Fundacja “Bez domu”</div>
-              <div th:text="#{page.index.who-we-help.foundation-4.description}" class="subtitle">Cel i misja: Pomoc dla osób nie posiadających miejsca zamieszkania</div>
+            <div class="col" th:if="${i < institutions.size()}">
+              <div th:text="${institutions[__${i}__].name}" class="title">nazwa fundacji</div>
+              <div th:text="${institutions[__${i}__].description}" class="subtitle">opis</div>
             </div>
 
+            <div class="col" th:if="${(i + 1) < institutions.size()}">
+              <div th:text="${institutions[__${i + 1}__].name}" class="title">nazwa fundacji</div>
+              <div th:text="${institutions[__${i + 1}__].description}" class="subtitle">opis</div>
+            </div>
           </li>
 
         </ul>
@@ -152,6 +141,6 @@
       </div>
     </footer>
 
-    <script th:src="@{js/app.js}"></script>
+    <script th:src="@{/js/app.js}"></script>
   </body>
 </html>

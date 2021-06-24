@@ -4,18 +4,18 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta http-equiv="X-UA-Compatible" content="ie=edge" />
-    <title>Document</title>
-    <link rel="stylesheet" href="css/style.css" />
+    <title th:text="#{page.login.title}">Logowanie</title>
+    <link rel="stylesheet" th:href="@{/css/style.css}" />
   </head>
   <body>
     <header>
       <nav class="container container--70">
-        <ul class="nav--actions">
+        <ul class="nav--actions" th:replace="index :: nav-user">
           <li><a href="#">Zaloguj</a></li>
           <li class="highlighted"><a href="#">Załóż konto</a></li>
         </ul>
 
-        <ul>
+        <ul th:replace="index :: nav-links">
           <li><a href="../index.html" class="btn btn--without-border active">Start</a></li>
           <li><a href="../index.html#steps" class="btn btn--without-border">O co chodzi?</a></li>
           <li><a href="../index.html#about-us" class="btn btn--without-border">O nas</a></li>
@@ -26,24 +26,25 @@
     </header>
 
     <section class="login-page">
-      <h2>Zaloguj się</h2>
-      <form>
+      <h2 th:text="#{page.login.log-in}">Zaloguj się</h2>
+      <form th:object="${user}" th:action="@{/login}" method="post">
+        <p th:if="${param.error != null}" class="form-alert" th:text="#{page.login.unsuccessfull}">Wrong user or password</p>
         <div class="form-group">
-          <input type="email" name="email" placeholder="Email" />
+          <input type="email" th:field="*{email}" th:placeholder="#{page.register.new-account.email}" />
         </div>
         <div class="form-group">
-          <input type="password" name="password" placeholder="Hasło" />
-          <a href="#" class="btn btn--small btn--without-border reset-password">Przypomnij hasło</a>
+          <input type="password" th:field="*{password}" th:placeholder="#{page.register.new-account.password}" />
+          <a href="#" class="btn btn--small btn--without-border reset-password" th:text="#{page.login.remind-pass}">Przypomnij hasło</a>
         </div>
 
         <div class="form-group form-group--buttons">
-          <a href="#" class="btn btn--without-border">Załóż konto</a>      
-          <button class="btn" type="submit">Zaloguj się</button> 
+          <a href="#" class="btn btn--without-border" th:text="#{page.login.create-account}">Załóż konto</a>
+          <button class="btn" type="submit" th:text="#{page.login.log-in}">Zaloguj się</button>
         </div>
       </form>
     </section>
 
-    <footer>
+    <footer th:replace="index :: footer">
         <div class="contact">
           <h2>Skontaktuj się z nami</h2>
           <h3>Formularz kontaktowy</h3>
