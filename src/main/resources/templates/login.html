@@ -27,8 +27,8 @@
 
     <section class="login-page">
       <h2 th:text="#{page.login.log-in}">Zaloguj się</h2>
-      <p th:if="${error}" class="form-alert" th:text="#{page.login.unsuccessfull}">Wrong user or password</p>
       <form th:object="${user}" th:action="@{/login}" method="post">
+        <p th:if="${param.error != null}" class="form-alert" th:text="#{page.login.unsuccessfull}">Wrong user or password</p>
         <div class="form-group">
           <input type="email" th:field="*{email}" th:placeholder="#{page.register.new-account.email}" />
         </div>
