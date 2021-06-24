@@ -20,7 +20,7 @@ public class UserService {
 
 
     public User validateAndRegisterNewUser(UserDto user) throws UserAlreadyExistException {
-        if(alreadyExists(user.getEmail())) {
+        if (alreadyExists(user.getEmail())) {
             throw new UserAlreadyExistException();
         } else {
             return registerNewUser(user);
@@ -31,6 +31,8 @@ public class UserService {
         Role role = roleRepository.findByName("ROLE_USER");
         User user = User.builder()
                 .email(userDto.getEmail())
+                .firstName(userDto.getFirstName())
+                .lastName(userDto.getLastName())
                 .password(userDto.getPassword())
                 .roles(List.of(role))
                 .build();
