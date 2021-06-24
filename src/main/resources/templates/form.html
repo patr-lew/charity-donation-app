@@ -11,7 +11,7 @@
 <body>
 <header class="header--form-page">
     <nav class="container container--70">
-        <ul class="nav--actions">
+        <ul class="nav--actions" th:fragment="logged-in">
             <li class="logged-user">
                 <div>
                     <span th:text="#{page.form.hello}" th:remove="tag"> Witaj</span>
