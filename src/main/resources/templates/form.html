@@ -20,7 +20,9 @@
                 <ul class="dropdown">
                     <li><a th:text="#{page.user.profile}" href="#">Profil</a></li>
                     <li><a th:text="#{page.user.donations}" href="#">Moje zbiórki</a></li>
-                    <li><a th:text="#{page.user.logout}" th:href="@{/logout}">Wyloguj</a></li>
+                    <form method="post" th:action="@{/logout}">
+                        <input type="submit" value="logout" th:value="#{page.user.logout}" />
+                    </form>
                 </ul>
             </li>
         </ul>
