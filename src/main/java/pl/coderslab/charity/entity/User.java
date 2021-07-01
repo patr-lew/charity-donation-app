@@ -14,12 +14,8 @@ import java.util.Collection;
 @Setter
 @Entity
 @Table(name = "user_account")
-public class User {
+public class User extends CharityEntity {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "usr_seq")
-    @SequenceGenerator(name = "usr_seq", sequenceName = "usr_seq", initialValue = 100, allocationSize = 1)
-    private Long id;
 
     @Column(name = "first_name")
     private String firstName;

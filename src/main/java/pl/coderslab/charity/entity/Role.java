@@ -10,13 +10,8 @@ import javax.persistence.*;
 @Getter
 @Setter
 @Entity
-@Table(name = "role")
-public class Role {
-
-    @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "role_seq")
-    @SequenceGenerator(name = "role_seq", sequenceName = "role_seq", initialValue = 100, allocationSize = 1)
-    private Long id;
+@Table
+public class Role extends CharityEntity {
 
     private String name;
 }

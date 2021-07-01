@@ -16,13 +16,8 @@ import java.util.Set;
 @Getter
 @Setter
 @Entity
-@Table(name = "donation")
-public class Donation {
-
-    @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "don_seq")
-    @SequenceGenerator(name = "don_seq", sequenceName = "don_seq", initialValue = 100, allocationSize = 1)
-    private Long id;
+@Table
+public class Donation extends CharityEntity {
 
     @Positive(message = "{validation.donation.quantity.positive}")
     @NotNull(message = "{validation.donation.quantity.not-null}")

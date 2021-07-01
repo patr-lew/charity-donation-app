@@ -11,13 +11,8 @@ import java.util.Objects;
 @Getter
 @Setter
 @Entity
-@Table(name = "category")
-public class Category {
-
-    @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "cat_seq")
-    @SequenceGenerator(name = "cat_seq", sequenceName = "cat_seq", initialValue = 100, allocationSize = 1)
-    private Long id;
+@Table
+public class Category extends CharityEntity {
 
     @Column(unique = true)
     private String name;
