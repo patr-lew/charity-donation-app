@@ -26,8 +26,8 @@ public class Donation extends CharityEntity {
     @ManyToMany
     @Size(min = 1, message = "{validation.donation.categories.empty}")
     @JoinTable(name = "donation_category",
-    inverseJoinColumns = @JoinColumn(name = "donation_id"),
-    joinColumns = @JoinColumn(name = "category_id"))
+            inverseJoinColumns = @JoinColumn(name = "donation_id"),
+            joinColumns = @JoinColumn(name = "category_id"))
     private Set<Category> categories = new HashSet<>();
 
     @NotNull(message = "{validation.donation.institution.not-null}")
@@ -68,7 +68,7 @@ public class Donation extends CharityEntity {
     private String pickUpComment;
 
     public boolean containsCategoryId(int id) {
-        for(Category category : categories) {
+        for (Category category : categories) {
             if (category.getId() == id) {
                 return true;
             }

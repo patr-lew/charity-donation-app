@@ -1,10 +1,8 @@
 package pl.coderslab.charity.entity;
 
 import lombok.*;
-import org.hibernate.validator.constraints.UniqueElements;
 
 import javax.persistence.*;
-import javax.validation.Constraint;
 import java.util.Collection;
 
 @Builder
