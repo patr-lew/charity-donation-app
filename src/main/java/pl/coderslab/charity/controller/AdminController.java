@@ -18,7 +18,7 @@ public class AdminController {
     private final InstitutionService institutionService;
 
     @GetMapping("/dashboard")
-    public String getDashboard(Model model) {
+    public String getDashboard() {
         return "admin/index";
     }
 
@@ -33,7 +33,6 @@ public class AdminController {
     @GetMapping("/institution/{id}")
     public String editInstitution(Model model, @PathVariable long id) {
         Institution institution = institutionService.findById(id);
-
         model.addAttribute("institution", institution);
         return "admin/editInstitution";
     }
@@ -42,6 +41,19 @@ public class AdminController {
     public String saveEditedInstitution(@ModelAttribute Institution institution) {
         institutionService.save(institution);
 
+        return "redirect:/admin/institutions";
+    }
+
+    @GetMapping("/institution/add")
+    public String addNewInstitution(Model model) {
+        Institution institution = new Institution();
+        model.addAttribute("institution", institution);
+        return "admin/editInstitution";
+    }
+
+    @PostMapping("/institution/delete/{id}")
+    public String deleteInstitution(@ModelAttribute Institution institution) {
+        institutionService.delete(institution);
         return "redirect:/admin/institutions";
     }
 

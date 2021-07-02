@@ -28,6 +28,10 @@ public class InstitutionService {
         institutionRepository.save(institution);
     }
 
+    public void delete(Institution institution) {
+        institutionRepository.delete(institution);
+    }
+
     private Institution resolveOptional(Optional<Institution> optional) {
         if (optional.isEmpty())
             throw new EntityNotFoundException();
