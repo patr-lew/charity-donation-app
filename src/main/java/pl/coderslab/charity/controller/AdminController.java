@@ -4,6 +4,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import pl.coderslab.charity.entity.Institution;
 import pl.coderslab.charity.service.DonationService;
@@ -17,7 +18,6 @@ import java.util.List;
 @RequestMapping("/admin")
 public class AdminController {
 
-    private final DonationService donationService;
     private final InstitutionService institutionService;
 
     @GetMapping("/dashboard")
@@ -31,6 +31,14 @@ public class AdminController {
         System.out.println(Arrays.toString(all.toArray()));
         model.addAttribute("institutions", all);
         return "admin/institutions";
+    }
+
+    @GetMapping("/institution/{id}")
+    public String editInstitution(Model model, @PathVariable long id) {
+        Institution institution = institutionService.findById(id);
+
+        model.addAttribute("institution", institution);
+        return "admin/editInstitution";
     }
 
 }

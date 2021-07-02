@@ -5,7 +5,9 @@ import org.springframework.stereotype.Service;
 import pl.coderslab.charity.entity.Institution;
 import pl.coderslab.charity.repository.InstitutionRepository;
 
+import javax.persistence.EntityNotFoundException;
 import java.util.List;
+import java.util.Optional;
 
 @Service
 @RequiredArgsConstructor
@@ -15,5 +17,16 @@ public class InstitutionService {
 
     public List<Institution> findAll() {
         return institutionRepository.findAll();
+    }
+
+    public Institution findById(long id) {
+        Optional<Institution> institutionOptional = institutionRepository.findById(id);
+        return resolveOptional(institutionOptional);
+    }
+
+    private Institution resolveOptional(Optional<Institution> optional) {
+        if (optional.isEmpty())
+            throw new EntityNotFoundException();
+        return optional.get();
     }
 }
