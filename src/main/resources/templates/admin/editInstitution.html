@@ -147,6 +147,7 @@
                     <div class="card-body">
 
                         <form th:method="post" th:action="@{/admin/institution/edit}" th:object="${institution}">
+                            <input type="hidden" th:field="*{id}">
                             <div class="form-floating mb-3">
                                 <input class="form-control" id="institutionName" th:field="*{name}"/>
                                 <label for="institutionName">Name</label>
