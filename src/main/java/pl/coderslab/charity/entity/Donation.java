@@ -19,6 +19,11 @@ import java.util.Set;
 @Table
 public class Donation extends CharityEntity {
 
+    @Id
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "don_seq")
+    @SequenceGenerator(name = "don_seq", sequenceName = "don_seq", initialValue = 100, allocationSize = 1)
+    private Long id;
+
     @Positive(message = "{validation.donation.quantity.positive}")
     @NotNull(message = "{validation.donation.quantity.not-null}")
     private Integer quantity;

@@ -2,9 +2,7 @@ package pl.coderslab.charity.entity;
 
 import lombok.*;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Table;
+import javax.persistence.*;
 import java.util.Objects;
 
 @Builder
@@ -16,6 +14,10 @@ import java.util.Objects;
 @Table
 public class Institution extends CharityEntity {
 
+    @Id
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "inst_seq")
+    @SequenceGenerator(name = "inst_seq", sequenceName = "inst_seq", initialValue = 100, allocationSize = 1)
+    private Long id;
 
     @Column(unique = true)
     private String name;

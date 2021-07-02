@@ -14,7 +14,10 @@ import java.util.Collection;
 @Table(name = "user_account")
 public class User extends CharityEntity {
 
-
+    @Id
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "user_seq")
+    @SequenceGenerator(name = "user_seq", sequenceName = "user_seq", initialValue = 100, allocationSize = 1)
+    private Long id;
     @Column(name = "first_name")
     private String firstName;
 

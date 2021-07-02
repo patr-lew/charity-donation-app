@@ -2,9 +2,7 @@ package pl.coderslab.charity.entity;
 
 import lombok.*;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Table;
+import javax.persistence.*;
 import java.util.Objects;
 
 @Builder
@@ -15,6 +13,11 @@ import java.util.Objects;
 @Entity
 @Table
 public class Category extends CharityEntity {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "cat_seq")
+    @SequenceGenerator(name = "cat_seq", sequenceName = "cat_seq", initialValue = 100, allocationSize = 1)
+    private Long id;
 
     @Column(unique = true)
     private String name;
