@@ -24,6 +24,10 @@ public class InstitutionService {
         return resolveOptional(institutionOptional);
     }
 
+    public void save(Institution institution) {
+        institutionRepository.save(institution);
+    }
+
     private Institution resolveOptional(Optional<Institution> optional) {
         if (optional.isEmpty())
             throw new EntityNotFoundException();

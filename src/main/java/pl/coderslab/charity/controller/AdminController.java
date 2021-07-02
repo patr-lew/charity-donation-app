@@ -3,9 +3,7 @@ package pl.coderslab.charity.controller;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 import pl.coderslab.charity.entity.Institution;
 import pl.coderslab.charity.service.InstitutionService;
 
@@ -40,6 +38,11 @@ public class AdminController {
         return "admin/editInstitution";
     }
 
-    // TODO POST /admin/institution/edit
+    @PostMapping("/institution/edit")
+    public String saveEditedInstitution(@ModelAttribute Institution institution) {
+        institutionService.save(institution);
+
+        return "redirect:/admin/institutions";
+    }
 
 }
